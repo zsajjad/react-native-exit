@@ -1,0 +1,19 @@
+{
+  "name": "RNExit",
+  "version": "1.0.0",
+  "summary": "React native exit app package when using RN as a library",
+  "description": "React native exit app package",
+  "homepage": "https://github.com/zsajjad/RNExit",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react-native"
+  ],
+  "author": "zsajjad",
+  "license": "MIT",
+  "peerDependencies": {
+    "react-native": "^0.41.2"
+  }
+}
