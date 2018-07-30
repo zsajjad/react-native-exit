@@ -1,9 +1,9 @@
 {
-  "name": "RNExit",
+  "name": "react-native-exit",
   "version": "1.0.0",
   "summary": "React native exit app package when using RN as a library",
   "description": "React native exit app package",
-  "homepage": "https://github.com/zsajjad/RNExit",
+  "homepage": "https://github.com/zsajjad/react-native-exit",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
