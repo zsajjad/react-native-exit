@@ -1,13 +1,9 @@
-import { NativeModules, BackHandler, Platform } from 'react-native';
+import { NativeModules } from 'react-native';
 
-const exitApp = (rootTag = 1) => {
-  if (Platform.OS === 'ios') {
-    NativeModules.RNExit.exitApp(rootTag);
-    return;
-  }
-  BackHandler.exitApp();
+const exitApp = (data = {}) => {
+  NativeModules.RNExit.exitApp(data);
 };
 
 export default {
-  exitApp,
+  exitApp
 };
