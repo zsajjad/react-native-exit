@@ -22,7 +22,7 @@ RCT_EXPORT_MODULE()
     return topVC;
 }
 
-RCT_REMAP_METHOD(exitApp, exitApp:(int)rootTag) {
+RCT_REMAP_METHOD(exitApp, exitApp:(NSDictionary *)rootTag) {
     dispatch_async(dispatch_get_main_queue(), ^{
 //        UIViewController *navigationController = (UIViewController *)[[[[UIApplication sharedApplication] delegate] window] rootViewController];
 //        [navigationController.presentedViewController dismissViewControllerAnimated:YES completion:nil];
