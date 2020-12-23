@@ -7,6 +7,12 @@
 {
     return dispatch_get_main_queue();
 }
+
+- (BOOL)requiresMainQueueSetup
+{
+ return YES;
+}
+
 RCT_EXPORT_MODULE()
 
 - (UIViewController *)currentTopViewController
@@ -22,11 +28,15 @@ RCT_EXPORT_MODULE()
     return topVC;
 }
 
-RCT_REMAP_METHOD(exitApp, exitApp:(NSDictionary *)rootTag) {
+RCT_REMAP_METHOD(exitApp, exitApp:(NSDictionary *)data) {
     dispatch_async(dispatch_get_main_queue(), ^{
 //        UIViewController *navigationController = (UIViewController *)[[[[UIApplication sharedApplication] delegate] window] rootViewController];
 //        [navigationController.presentedViewController dismissViewControllerAnimated:YES completion:nil];
         @try {
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+            [userDefaults setObject:data
+                             forKey:@"pkb_exit_data"];
+            [userDefaults synchronize];
             [[self currentTopViewController] dismissViewControllerAnimated:YES completion:nil];
         }
         @catch(NSError *error) {
