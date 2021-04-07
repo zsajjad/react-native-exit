@@ -17,7 +17,12 @@ RCT_EXPORT_MODULE()
 
 - (UIViewController *)currentTopViewController
 {
-    UIViewController *topVC = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+    UIViewController *topVC;
+    if (@available(iOS 13, *)){
+        topVC = [UIApplication sharedApplication].keyWindow.rootViewController;
+    } else {
+        topVC = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
+    }
     while (topVC.presentedViewController)
     {
         topVC = topVC.presentedViewController;
@@ -30,8 +35,6 @@ RCT_EXPORT_MODULE()
 
 RCT_REMAP_METHOD(exitApp, exitApp:(NSDictionary *)data) {
     dispatch_async(dispatch_get_main_queue(), ^{
-//        UIViewController *navigationController = (UIViewController *)[[[[UIApplication sharedApplication] delegate] window] rootViewController];
-//        [navigationController.presentedViewController dismissViewControllerAnimated:YES completion:nil];
         @try {
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             [userDefaults setObject:data
