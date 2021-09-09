@@ -1,6 +1,6 @@
 {
   "name": "react-native-exit",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "summary": "React native exit app package when using RN as a library",
   "description": "React native exit app package",
   "homepage": "https://github.com/zsajjad/react-native-exit",
@@ -14,6 +14,6 @@
   "author": "zsajjad",
   "license": "MIT",
   "peerDependencies": {
-    "react-native": "^0.41.2"
+    "react-native": ">= 0.51"
   }
 }
