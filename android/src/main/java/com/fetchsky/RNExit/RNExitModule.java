@@ -48,12 +48,12 @@ public class RNExitModule extends ReactContextBaseJavaModule {
                 case String:
                     intent.putExtra(key, readableMap.getString(key));
                     break;
-//                case Map:
-//                    intent.putExtra(key, (Parcelable) readableMap.getMap(key));
-//                    break;
-//                case Array:
-//                    intent.putExtra(key, readableMap.getArray(key));
-//                    break;
+                case Map:
+                    intent.putExtra(key, readableMap.getMap(key).toHashMap());
+                    break;
+                case Array:
+                    intent.putExtra(key, readableMap.getArray(key).toArrayList());
+                    break;
             }
         }
         getCurrentActivity().setResult(RESULT_OK, intent);
