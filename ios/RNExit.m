@@ -33,13 +33,20 @@ RCT_EXPORT_MODULE()
     return topVC;
 }
 
-RCT_REMAP_METHOD(exitApp, exitApp:(NSDictionary *)data) {
+RCT_REMAP_METHOD(exitApp,
+                 exitApp:(NSDictionary *)data
+                 withNavigationExitType:(NSString *)navigationExitType
+                 ) {
     dispatch_async(dispatch_get_main_queue(), ^{
         @try {
             NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
             [userDefaults setObject:data
                              forKey:@"pkb_exit_data"];
             [userDefaults synchronize];
+            if ([navigationExitType isEqualToString:@"POP"]) {
+                [[self currentTopViewController] popoverPresentationController];
+                return;
+            }
             [[self currentTopViewController] dismissViewControllerAnimated:YES completion:nil];
         }
         @catch(NSError *error) {
