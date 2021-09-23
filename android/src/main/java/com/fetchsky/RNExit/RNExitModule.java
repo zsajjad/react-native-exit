@@ -27,6 +27,35 @@ public class RNExitModule extends ReactContextBaseJavaModule {
       return "RNExit";
     }
 
+    private Bundle getBundle(ReadableMap readableMap) {
+        Bundle bundle = new Bundle();
+        ReadableMapKeySetIterator iterator = readableMap.keySetIterator();
+        while (iterator.hasNextKey()) {
+            String key = iterator.nextKey();
+            ReadableType type = readableMap.getType(key);
+            switch (type) {
+                case Null:
+                    bundle.putInt(key, -1);
+                    break;
+                case Boolean:
+                    bundle.putBoolean(key, readableMap.getBoolean(key));
+                    break;
+                case Number:
+                    bundle.putDouble(key, readableMap.getDouble(key));
+                    break;
+                case String:
+                    bundle.putString(key, readableMap.getString(key));
+                    break;
+                case Map:
+                    bundle.putBundle(key, getBundle(readableMap.getMap(key)));
+                    break;
+                case Array:
+                    bundle.putString(key, readableMap.getArray(key).toArrayList().toString());
+                    break;
+            }
+        }
+        return bundle;
+    }
 
     @ReactMethod
     public void exitApp(ReadableMap readableMap) {
@@ -49,7 +78,7 @@ public class RNExitModule extends ReactContextBaseJavaModule {
                     intent.putExtra(key, readableMap.getString(key));
                     break;
                 case Map:
-                    intent.putExtra(key, readableMap.getMap(key).toHashMap());
+                    intent.putExtra(key, getBundle(readableMap.getMap(key)));
                     break;
                 case Array:
                     intent.putExtra(key, readableMap.getArray(key).toArrayList());
