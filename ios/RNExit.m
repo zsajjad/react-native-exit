@@ -43,6 +43,7 @@ RCT_REMAP_METHOD(exitApp,
             [userDefaults setObject:data
                              forKey:@"pkb_exit_data"];
             [userDefaults synchronize];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"PeekabooConnectExit" object:nil userInfo:data];
             if ([navigationExitType isEqualToString:@"POP"]) {
                 [[self currentTopViewController] popoverPresentationController];
                 return;
