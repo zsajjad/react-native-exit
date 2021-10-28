@@ -56,7 +56,7 @@ public class RNExitModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void exitApp(ReadableMap readableMap, /* String _navigationExitType */) {
+    public void exitApp(ReadableMap readableMap) {
         Intent intent = new Intent();
         ReadableMapKeySetIterator iterator = readableMap.keySetIterator();
         while (iterator.hasNextKey()) {
