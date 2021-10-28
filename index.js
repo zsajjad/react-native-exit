@@ -1,7 +1,7 @@
 import { NativeModules } from 'react-native';
 
-const exitApp = (data = {}, method = 'DISMISS') => {
-  NativeModules.RNExit.exitApp(data, method);
+const exitApp = (data = {}) => {
+  NativeModules.RNExit.exitApp(data);
 };
 
 export default {

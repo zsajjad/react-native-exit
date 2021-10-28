@@ -35,7 +35,7 @@ RCT_EXPORT_MODULE()
 
 RCT_REMAP_METHOD(exitApp,
                  exitApp:(NSDictionary *)data
-                 withNavigationExitType:(NSString *)navigationExitType
+                //  withNavigationExitType:(NSString *)navigationExitType
                  ) {
     dispatch_async(dispatch_get_main_queue(), ^{
         @try {
@@ -44,10 +44,10 @@ RCT_REMAP_METHOD(exitApp,
                              forKey:@"pkb_exit_data"];
             [userDefaults synchronize];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"PeekabooConnectExit" object:nil userInfo:data];
-            if ([navigationExitType isEqualToString:@"POP"]) {
-                [[self currentTopViewController] popoverPresentationController];
-                return;
-            }
+            // if ([navigationExitType isEqualToString:@"POP"]) {
+            //     [[self currentTopViewController] popoverPresentationController];
+            //     return;
+            // }
             [[self currentTopViewController] dismissViewControllerAnimated:YES completion:nil];
         }
         @catch(NSError *error) {
